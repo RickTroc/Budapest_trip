@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale-1.0">
+    <title>Itinerario Budapest: 4 Giorni</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chosen Palette: Warm Neutrals (Sfondo Crema/Beige, Testo scuro, Accenti Verde Salvia e Ambra) -->
+    <!-- Application Structure Plan: Struttura basata su Tab (navigazione) per i 4 giorni + sezione 'Consigli'. Cliccando un giorno (es. 'Giorno 2'), il contenuto sottostante cambia dinamicamente (JS show/hide) per mostrare solo le attività di quel giorno. Le attività giornaliere sono presentate come una timeline verticale di 'card' (una per fascia oraria: Mattina, Pranzo, etc.) invece di una tabella, per massima leggibilità su mobile. Questa struttura è la più intuitiva per un itinerario, permettendo all'utente di focalizzarsi su un giorno alla volta. -->
+    <!-- Visualization & Content Choices: Report Info: Tabelle itinerario Giorno 1-4. -> Goal: Organizzare. -> Viz/Presentation Method: Layout a Tab (per Giorno) e Card verticali (per Attività). -> Interaction: Click sui Tab per cambiare giorno. -> Justification: Migliore UX mobile rispetto alle tabelle. -> Library/Method: HTML/Tailwind/JS (show/hide). Report Info: Consigli Extra. -> Goal: Informare. -> Viz/Presentation Method: Lista HTML stilizzata. -> Interaction: Nessuna (lettura). -> Justification: Standard. -> Library/Method: HTML/Tailwind. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .nav-link {
+            transition: all 0.3s ease;
+        }
+        .nav-link.active {
+            border-color: #047857; 
+            background-color: #047857; 
+            color: #ffffff;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+        .nav-link:not(.active):hover {
+            border-color: #065f46;
+            color: #065f46;
+        }
+        .content-panel {
+            display: none;
+        }
+        .content-panel.active {
+            display: block;
+        }
+    </style>
+</head>
+<body class="bg-stone-50 text-stone-800">
+
+    <div class="container mx-auto max-w-4xl p-4 sm:p-8">
+        
+        <header class="text-center mb-8">
+            <h1 class="text-3xl sm:text-4xl font-bold text-emerald-800 mb-2">Itinerario Budapest: 4 Giorni</h1>
+            <p class="text-lg text-stone-600">Un viaggio indimenticabile per coppie (11-14 Dicembre)</p>
+            <p class="mt-4 bg-amber-100 text-amber-800 border border-amber-200 rounded-lg p-3 text-sm">
+                <strong>Nota sul periodo (11-14 Dicembre):</strong> Il clima sarà freddo. Vesti a strati e porta cappotto, sciarpa e guanti. Godrai appieno dell'atmosfera magica dei Mercatini di Natale!
+            </p>
+        </header>
+
+        <nav class="mb-8">
+            <ul class="flex flex-wrap justify-center gap-2 sm:gap-4">
+                <li><button class="nav-link active w-full sm:w-auto text-center font-medium py-2 px-4 rounded-full border-2 border-stone-300 bg-white" data-target="giorno-1">Giorno 1</button></li>
+                <li><button class="nav-link w-full sm:w-auto text-center font-medium py-2 px-4 rounded-full border-2 border-stone-300 bg-white" data-target="giorno-2">Giorno 2</button></li>
+                <li><button class="nav-link w-full sm:w-auto text-center font-medium py-2 px-4 rounded-full border-2 border-stone-300 bg-white" data-target="giorno-3">Giorno 3</button></li>
+                <li><button class="nav-link w-full sm:w-auto text-center font-medium py-2 px-4 rounded-full border-2 border-stone-300 bg-white" data-target="giorno-4">Giorno 4</button></li>
+                <li><button class="nav-link w-full sm:w-auto text-center font-medium py-2 px-4 rounded-full border-2 border-stone-300 bg-white" data-target="consigli">Consigli Utili</button></li>
+            </ul>
+        </nav>
+
+        <main>
+            <section id="giorno-1" class="content-panel active">
+                <h2 class="text-2xl font-semibold text-emerald-700 mb-6 text-center">Giorno 1: Arrivo, Pest e Magia Natalizia</h2>
+                <div class="space-y-6">
+                    <div class="bg-white p-4 sm:p-6 rounded-lg shadow-md flex gap-4 items-start">
+                        <span class="text-3xl mt-1">✈️</span>
+                        <div>
+                            <h3 class="font-bold text-lg">Mattina: Arrivo e Check-in</h3>
+                            <p class="text-stone-600">Arriva all'aeroporto (BUD), prendi il bus 100E per il centro città e sistemati nel tuo alloggio (Distretto V o VI consigliati).</p>
+                            <span class="inline-block bg-emerald-100 text-emerald-800 text-xs font-semibold px-2 py-0.5 rounded-full mt-2">Logistica e Primo Impatto</span>
+                        </div>
+                    </div>
+                    <div class="bg-white p-4 sm:p-6 rounded-lg shadow-md flex gap-4 items-start">
+                        <span class="text-3xl mt-1">🍽️</span>
+                        <div>
+                            <h3 class="font-bold text-lg">Pranzo: Mercato Centrale (Nagy Vásárcsarnok)</h3>
+                            <p class="text-stone-600">Assaggia la cucina ungherese: *lángos* (pane fritto con panna acida e formaggio) o *goulash*.</p>
+                            <span class="inline-block bg-emerald-100 text-emerald-800 text-xs font-semibold px-2 py-0.5 rounded-full mt-2">Cibo di Strada Tradizionale</span>
+                        </div>
+                    </div>
+                    <div class="bg-white p-4 sm:p-6 rounded-lg shadow-md flex gap-4 items-start">
+                        <span class="text-3xl mt-1">🏛️</span>
+                        <div>
+                            <h3 class="font-bold text-lg">Pomeriggio: Passeggiata sul Danubio & Parlamento</h3>
+                            <p class="text-stone-600">Ammira il magnifico **Parlamento Ungherese**. Fai una sosta toccante alle **Scarpe sulla Riva del Danubio** (Monumento all'Olocausto).</p>
+                            <span class="inline-block bg-emerald-100 text-emerald-800 text-xs font-semibold px-2 py-0.5 rounded-full mt-2">Cultura e Storia</span>
+                        </div>
+                    </div>
+                    <div class="bg-white p-4 sm:p-6 rounded-lg shadow-md flex gap-4 items-start">
+                        <span class="text-3xl mt-1">🐷</span>
+                        <div>
+                            <h3 class="font-bold text-lg">Tardo Pomeriggio: Zoo Café</h3>
+                            <p class="text-stone-600">Fai una pausa caffè in questo locale unico dove potrete interagire con diversi animali, tra cui furetti, pappagalli e talvolta anche mini-maiali.</p>
+                            <span class="inline-block bg-emerald-100 text-emerald-800 text-xs font-semibold px-2 py-0.5 rounded-full mt-2">Curiosità e Animali</span>
+                        </div>
+                    </div>
+                    <div class="bg-white p-4 sm:p-6 rounded-lg shadow-md flex gap-4 items-start">
+                        <span class="text-3xl mt-1">🥘</span>
+                        <div>
+                            <h3 class="font-bold text-lg">Sera: Cena in Quartiere Ebraico</h3>
+                            <p class="text-stone-600">Cena in un ristorante trendy nel vivace Quartiere Ebraico.</p>
+                            <span class="inline-block bg-emerald-100 text-emerald-800 text-xs font-semibold px-2 py-0.5 rounded-full mt-2">Gastronomia e Atmosfera</span>
+                        </div>
+                    </div>
+                    <div class="bg-white p-4 sm:p-6 rounded-lg shadow-md flex gap-4 items-start">
+                        <span class="text-3xl mt-1">🎄</span>
+                        <div>
+                            <h3 class="font-bold text-lg">Dopo Cena: Mercatini di Natale - Piazza Vörösmarty</h3>
+                            <p class="text-stone-600">Goditi l'atmosfera festiva. Prova il **vin brulé (*forralt bor*)** e il dolce *kürtőskalács* (torta a camino).</p>
+                            <span class="inline-block bg-emerald-100 text-emerald-800 text-xs font-semibold px-2 py-0.5 rounded-full mt-2">Atmosfera Natalizia</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="giorno-2" class="content-panel">
+                <h2 class="text-2xl font-semibold text-emerald-700 mb-6 text-center">Giorno 2: Terme, Birra e la Storica Buda</h2>
+                <div class="space-y-6">
+                    <div class="bg-white p-4 sm:p-6 rounded-lg shadow-md flex gap-4 items-start">
+                        <span class="text-3xl mt-1">🛁</span>
+                        <div>
+                            <h3 class="font-bold text-lg">Mattina: Beer Spa e Terme Széchenyi</h3>
+                            <p class="text-stone-600">Inizia con un rilassante **bagno di birra** (45 min) e prosegui con il relax nelle grandi piscine termali di Széchenyi. Un must!</p>
+                            <span class="inline-block bg-amber-100 text-amber-800 text-xs font-semibold px-2 py-0.5 rounded-full mt-2">Relax e Esperienza Unica</span>
+                        </div>
+                    </div>
+                    <div class="bg-white p-4 sm:p-6 rounded-lg shadow-md flex gap-4 items-start">
+                        <span class="text-3xl mt-1">🚠</span>
+                        <div>
+                            <h3 class="font-bold text-lg">Pranzo: A Vár (Castello di Buda)</h3>
+                            <p class="text-stone-600">Prendi la funicolare (o cammina) fino alla collina di Buda. Pranza con vista panoramica in zona Castello.</p>
+                            <span class="inline-block bg-emerald-100 text-emerald-800 text-xs font-semibold px-2 py-0.5 rounded-full mt-2">Vista Panoramica</span>
+                        </div>
+                    </div>
+                    <div class="bg-white p-4 sm:p-6 rounded-lg shadow-md flex gap-4 items-start">
+                        <span class="text-3xl mt-1">🏰</span>
+                        <div>
+                            <h3 class="font-bold text-lg">Pomeriggio: Esplorazione del Castello di Buda</h3>
+                            <p class="text-stone-600">Visita il **Palazzo Reale**, la **Chiesa di Mattia** e il **Bastione dei Pescatori (Halászbástya)** per le foto più spettacolari.</p>
+                            <span class="inline-block bg-emerald-100 text-emerald-800 text-xs font-semibold px-2 py-0.5 rounded-full mt-2">Storia e Architettura</span>
+                        </div>
+                    </div>
+                    <div class="bg-white p-4 sm:p-6 rounded-lg shadow-md flex gap-4 items-start">
+                        <span class="text-3xl mt-1">🍷</span>
+                        <div>
+                            <h3 class="font-bold text-lg">Cena: Cena Romantica a Pest</h3>
+                            <p class="text-stone-600">Scegli un ristorante accogliente nel Distretto V e goditi un bicchiere di vino Tokaji.</p>
+                            <span class="inline-block bg-emerald-100 text-emerald-800 text-xs font-semibold px-2 py-0.5 rounded-full mt-2">Cena Romantica</span>
+                        </div>
+                    </div>
+                    <div class="bg-white p-4 sm:p-6 rounded-lg shadow-md flex gap-4 items-start">
+                        <span class="text-3xl mt-1">🚢</span>
+                        <div>
+                            <h3 class="font-bold text-lg">Dopo Cena: Crociera sul Danubio</h3>
+                            <p class="text-stone-600">Fai una crociera serale per vedere il Parlamento e il Castello illuminati. Magico nonostante il freddo!</p>
+                            <span class="inline-block bg-amber-100 text-amber-800 text-xs font-semibold px-2 py-0.5 rounded-full mt-2">Attività Romantica</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="giorno-3" class="content-panel">
+                <h2 class="text-2xl font-semibold text-emerald-700 mb-6 text-center">Giorno 3: Arte, Viali e Atmosfera Alternativa</h2>
+                 <div class="space-y-6">
+                    <div class="bg-white p-4 sm:p-6 rounded-lg shadow-md flex gap-4 items-start">
+                        <span class="text-3xl mt-1">🏛️</span>
+                        <div>
+                            <h3 class="font-bold text-lg">Mattina: Viale Andrássy e Piazza degli Eroi</h3>
+                            <p class="text-stone-600">Percorri il maestoso Viale Andrássy (UNESCO) fino a **Piazza degli Eroi (Hősök tere)**, ammirando i monumenti.</p>
+                            <span class="inline-block bg-emerald-100 text-emerald-800 text-xs font-semibold px-2 py-0.5 rounded-full mt-2">Passeggiata Elegante</span>
+                        </div>
+                    </div>
+                    <div class="bg-white p-4 sm:p-6 rounded-lg shadow-md flex gap-4 items-start">
+                        <span class="text-3xl mt-1">⏳</span>
+                        <div>
+                            <h3 class="font-bold text-lg">Pomeriggio: Casa del Terrore (Terror Háza)</h3>
+                            <p class="text-stone-600">Visita questo museo toccante che documenta i regimi totalitari (fascista e comunista) del XX secolo. Una lezione di storia intensa.</p>
+                            <span class="inline-block bg-emerald-100 text-emerald-800 text-xs font-semibold px-2 py-0.5 rounded-full mt-2">Cultura e Storia Moderna</span>
+                        </div>
+                    </div>
+                    <div class="bg-white p-4 sm:p-6 rounded-lg shadow-md flex gap-4 items-start">
+                        <span class="text-3xl mt-1">🌳</span>
+                        <div>
+                            <h3 class="font-bold text-lg">Pomeriggio (Alternativa): Isola Margherita</h3>
+                            <p class="text-stone-600">Se preferite la natura, fate una breve passeggiata (farà freddo per la bici) nell'oasi verde dell'Isola Margherita.</p>
+                            <span class="inline-block bg-emerald-100 text-emerald-800 text-xs font-semibold px-2 py-0.5 rounded-full mt-2">Natura e Aria Aperta</span>
+                        </div>
+                    </div>
+                    <div class="bg-white p-4 sm:p-6 rounded-lg shadow-md flex gap-4 items-start">
+                        <span class="text-3xl mt-1">🍔</span>
+                        <div>
+                            <h3 class="font-bold text-lg">Cena: Street Food e Locale Hipster</h3>
+                            <p class="text-stone-600">Cerca i food truck o un posto carino nella zona di Gozsdu Udvar o Kazinczy Street per una cena veloce e informale.</p>
+                            <span class="inline-block bg-emerald-100 text-emerald-800 text-xs font-semibold px-2 py-0.5 rounded-full mt-2">Trend Urbani</span>
+                        </div>
+                    </div>
+                    <div class="bg-white p-4 sm:p-6 rounded-lg shadow-md flex gap-4 items-start">
+                        <span class="text-3xl mt-1">✨</span>
+                        <div>
+                            <h3 class="font-bold text-lg">Dopo Cena: Mercatino alla Basilica di S. Stefano</h3>
+                            <p class="text-stone-600">Visita l'**Advent Feast at the Basilica**, uno dei più belli d'Europa, con pista di pattinaggio e spettacolo di luci sulla facciata.</p>
+                            <span class="inline-block bg-amber-100 text-amber-800 text-xs font-semibold px-2 py-0.5 rounded-full mt-2">Magia Natalizia</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="giorno-4" class="content-panel">
+                <h2 class="text-2xl font-semibold text-emerald-700 mb-6 text-center">Giorno 4: Panorama e Partenza</h2>
+                <div class="space-y-6">
+                    <div class="bg-white p-4 sm:p-6 rounded-lg shadow-md flex gap-4 items-start">
+                        <span class="text-3xl mt-1">🌄</span>
+                        <div>
+                            <h3 class="font-bold text-lg">Mattina: Collina Gellért e Cittadella</h3>
+                            <p class="text-stone-600">Sali sulla **Collina Gellért** per la vista più alta e completa di tutta la città. Ammira la Statua della Libertà (Szabadság-szobor).</p>
+                            <span class="inline-block bg-emerald-100 text-emerald-800 text-xs font-semibold px-2 py-0.5 rounded-full mt-2">Trekking Urbano e Viste</span>
+                        </div>
+                    </div>
+                    <div class="bg-white p-4 sm:p-6 rounded-lg shadow-md flex gap-4 items-start">
+                        <span class="text-3xl mt-1">☕</span>
+                        <div>
+                            <h3 class="font-bold text-lg">Tarda Mattina: Shopping o Caffè Storico</h3>
+                            <p class="text-stone-600">Ultimi acquisti di souvenir o relax in una caffetteria (come il lussuoso **New York Café** per un'ultima esperienza elegante).</p>
+                            <span class="inline-block bg-emerald-100 text-emerald-800 text-xs font-semibold px-2 py-0.5 rounded-full mt-2">Souvenir e Caffè Storico</span>
+                        </div>
+                    </div>
+                    <div class="bg-white p-4 sm:p-6 rounded-lg shadow-md flex gap-4 items-start">
+                        <span class="text-3xl mt-1">🍲</span>
+                        <div>
+                            <h3 class="font-bold text-lg">Pranzo: Ultimo Goulash</h3>
+                            <p class="text-stone-600">Goditi un ultimo pasto ungherese classico prima di partire.</p>
+                            <span class="inline-block bg-emerald-100 text-emerald-800 text-xs font-semibold px-2 py-0.5 rounded-full mt-2">Ultimo Piatto Tradizionale</span>
+                        </div>
+                    </div>
+                    <div class="bg-white p-4 sm:p-6 rounded-lg shadow-md flex gap-4 items-start">
+                        <span class="text-3xl mt-1">🛫</span>
+                        <div>
+                            <h3 class="font-bold text-lg">Pomeriggio: Ritorno</h3>
+                            <p class="text-stone-600">Raggiungi l'aeroporto (bus 100E) per il volo di ritorno.</p>
+                            <span class="inline-block bg-emerald-100 text-emerald-800 text-xs font-semibold px-2 py-0.5 rounded-full mt-2">Partenza</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="consigli" class="content-panel">
+                <h2 class="text-2xl font-semibold text-emerald-700 mb-6 text-center">Consigli Utili (Dicembre)</h2>
+                <div class="bg-white p-4 sm:p-6 rounded-lg shadow-md">
+                    <ul class="space-y-4 list-disc list-inside text-stone-700">
+                        <li>
+                            <strong>Terme e Birra:</strong> La Beer Spa si trova all'interno del complesso Széchenyi. È necessario <strong>prenotare in anticipo</strong>, specialmente nei weekend.
+                        </li>
+                        <li>
+                            <strong>Mercatini:</strong> I due mercatini principali (Vörösmarty e Basilica) sono imperdibili per l'atmosfera festiva, l'artigianato e le bevande calde.
+                        </li>
+                        <li>
+                            <strong>Zoo Café:</strong> È un luogo divertente e insolito, ma è consigliabile chiamare o controllare la pagina social per verificare gli orari e la presenza dei maialini in quel giorno.
+                        </li>
+                        <li>
+                            <strong>Trasporti:</strong> Acquista un abbonamento di 72 ore. Il **Tram 2** sul Danubio è il modo migliore per vedere tutti i monumenti illuminati senza prendere una crociera (anche se la crociera è più romantica!).
+                        </li>
+                        <li>
+                            <strong>Look da Vista:</strong> I panorami notturni sono incredibili; porta un cavalletto per cellulare per foto di coppia fantastiche!
+                        </li>
+                    </ul>
+                </div>
+            </section>
+        </main>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const navLinks = document.querySelectorAll('.nav-link');
+            const contentPanels = document.querySelectorAll('.content-panel');
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', function () {
+                    const targetId = this.getAttribute('data-target');
+                    
+                    navLinks.forEach(navLink => {
+                        navLink.classList.remove('active');
+                    });
+                    
+                    this.classList.add('active');
+                    
+                    contentPanels.forEach(panel => {
+                        if (panel.id === targetId) {
+                            panel.classList.add('active');
+                        } else {
+                            panel.classList.remove('active');
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
